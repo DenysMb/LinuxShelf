@@ -16,11 +16,14 @@
 </template>
 
 <script>
-export default {};
+  export default {};
 </script>
 
-<style scoped>
-.dropHere {
-  opacity: 0.1;
-}
+<style>
+  .dropHere {
+    opacity: 0.1;
+  }
+  .ivu-upload-drag:hover {
+    border-color: #f9548f;
+  }
 </style>
