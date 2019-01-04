@@ -2,6 +2,7 @@
   <Upload
         ref="upload"
         :format="['deb']"
+        :on-format-error="handleFormatError"
         multiple
         type="drag"
         action="//jsonplaceholder.typicode.com/posts/"
@@ -16,14 +17,27 @@
 </template>
 
 <script>
-  export default {};
+export default {
+  methods: {
+    handleFormatError(file) {
+      this.$Notice.warning({
+        title: "Arquivo com formato incorreto",
+        desc:
+          "O formato do arquivo " +
+          file.name +
+          " está incorreto. Por favor, selecione um arquivo em formato .deb",
+        duration: 10
+      });
+    }
+  }
+};
 </script>
 
 <style>
-  .dropHere {
-    opacity: 0.1;
-  }
-  .ivu-upload-drag:hover {
-    border-color: #f9548f;
-  }
+.dropHere {
+  opacity: 0.1;
+}
+.ivu-upload-drag:hover {
+  border-color: #f9548f;
+}
 </style>
