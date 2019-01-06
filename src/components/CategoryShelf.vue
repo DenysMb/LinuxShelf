@@ -1,34 +1,38 @@
 <template>
-  <Card style="width:100%">
+  <Card style="width: 100%; margin-bottom: 20px;">
     <p slot="title" style="text-align: left;">
       <Icon :type="'ios-' + icon"></Icon>
-      {{title}}
+      {{category.label}}
     </p>
-    <a href="#" slot="extra" @click.prevent="manuallyInsert">
-      <Icon type="ios-add"></Icon>
-      Insert
+    <a href="#" slot="extra" @click.prevent="deleteCategory" v-if="deleteCategory">
+      <Icon type="ios-close"></Icon>
+      Delete
     </a>
     <div style="display: flex;">
       <slot></slot>
-      <AddAppCard />
+      <AddAppCard :category="category.value" />
     </div>
   </Card>
 </template>
 
 <script>
   import AddAppCard from './AddAppCard';
-
+  import { db } from '@/firebase';
   export default {
     components: {
       AddAppCard
     },
     props: {
-		icon: String,
-		title: String
+  		icon: String,
+  		category: Object,
+      deleteCategory: {type: Boolean, default: true}
+  },
+  firebase: {
+    categories: db.ref('categories')
   },
   methods: {
-    manuallyInsert(){
-      alert('manuallyInsert');
+    deleteCategory(){
+      this.$firebaseRefs.categories.child(this.category['.key']).remove();
     }
   }
   }

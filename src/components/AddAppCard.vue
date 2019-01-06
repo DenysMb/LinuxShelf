@@ -1,32 +1,48 @@
 <template>
-  <Upload
-        ref="upload"
-        :format="['deb']"
-        :on-format-error="handleFormatError"
-        multiple
-        type="drag"
-        action="//jsonplaceholder.typicode.com/posts/"
-        style="display: inline-block;width:160px;height:190px;">
-        <Card>
-          <div style="text-align:center">
-            <Icon type="ios-cloud-upload" class="dropHere" size="108"></Icon>
-            <h3 style="opacity: 0.2;">Click or Drop here</h3>
-          </div>
-        </Card>
-    </Upload>
+  <div>
+    <input
+      type="file"
+      id="file"
+      name="file"
+      class="inputfile"
+      multiple
+      @change="detectFiles($event.target.files)">
+    <label for="file">
+      <Card class="inputCard">
+        <div style="text-align:center">
+          <Icon type="ios-cloud-upload" class="dropHere" size="108"></Icon>
+          <h3 style="opacity: 0.2;">Click here</h3>
+        </div>
+      </Card>
+    </label>
+  </div>
 </template>
 
 <script>
+import { db, storage } from '@/firebase'
+
 export default {
+  firebase: {
+    apps: db.ref('apps')
+  },
+  props: ['category'],
   methods: {
-    handleFormatError(file) {
-      this.$Notice.warning({
-        title: "Arquivo com formato incorreto",
-        desc:
-          "O formato do arquivo " +
-          file.name +
-          " está incorreto. Por favor, selecione um arquivo em formato .deb",
-        duration: 10
+    detectFiles (fileList) {
+      Array.from(Array(fileList.length).keys()).map( x => {
+        this.upload(fileList[x])
+      })
+    },
+    upload (file) {
+      storage.ref('debs/' + file.name).put(file).then(res => {
+        storage.ref('debs/' + file.name).getDownloadURL()
+        .then(url => this.$firebaseRefs.apps.push({
+          addedIn: res.metadata.timeCreated,
+          category: this.category,
+          lastTimeDownloaded: res.metadata.timeCreated,
+          name: res.metadata.name,
+          size: (parseInt(res.metadata.size, 10)/1000000) + 'Mb',
+          url: url
+        }))
       });
     }
   }
@@ -37,7 +53,15 @@ export default {
 .dropHere {
   opacity: 0.1;
 }
-.ivu-upload-drag:hover {
+.inputfile {
+  display: none;
+}
+.inputCard {
+  width: 160px;
+  height: 190px;
+}
+.inputCard:hover {
+  box-shadow: 0 1px 6px #f9548f;
   border-color: #f9548f;
 }
 </style>

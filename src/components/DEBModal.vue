@@ -13,7 +13,7 @@
       <strong>Added in</strong>:
       <Input
         :value="addedIn"
-        disabled="true"
+        :disabled="true"
         size="small"
         />
     </div>
@@ -21,7 +21,7 @@
       <strong>Last time downloaded</strong>:
       <Input
         :value="lastTimeDownloaded"
-        disabled="true"
+        :disabled="true"
         size="small"
         />
     </div>
@@ -29,14 +29,14 @@
       <strong>Size</strong>:
       <Input
         :value="size"
-        disabled="true"
+        :disabled="true"
         size="small"
         />
     </div>
     <div>
       <strong>Category</strong>:
       <Select size="small" :value="category" :disabled="disabledInput">
-        <Option v-for="option in categoryList" :value="option.value" :key="option.value">{{ option.label }}</Option>
+        <Option v-for="category in categories" :value="category.value" :key="category.value">{{ category.label }}</Option>
       </Select>
     </div>
     <div slot="footer">
@@ -53,6 +53,7 @@
 </template>
 
 <script>
+  import { db } from '@/firebase';
   export default {
     props: {
 	    title: String,
@@ -62,14 +63,12 @@
 	    lastTimeDownloaded: String,
       open: Boolean
 	  },
+    firebase: {
+      categories: db.ref('categories')
+    },
    data() {
      return {
-       disabledInput: true,
-       categoryList: [
-         {value: 'Favorites', label: 'Favorites'},
-         {value: 'Games', label: 'Games'},
-         {value: 'Multimedia', label: 'Multimedia'}
-       ]
+       disabledInput: true
      }
    },
    methods: {

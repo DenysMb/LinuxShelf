@@ -42,4 +42,15 @@
   height: auto !important;
   line-height: 0 !important;
 }
+.btn-primary {
+  background-color: #f9548f !important;
+  border-color: #f9548f !important;
+  transition: all 0.2s !important;
+}
+.btn-primary:hover {
+  background-color: #f9548f !important;
+  border-color: #f9548f !important;
+  opacity: 0.8 !important;
+  transition: all 0.2s !important;
+}
 </style>
