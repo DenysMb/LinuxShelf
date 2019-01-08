@@ -19,31 +19,38 @@
 </template>
 
 <script>
-import { db, storage } from '@/firebase'
+import { db, storage } from "@/firebase";
 
 export default {
   firebase: {
-    apps: db.ref('apps')
+    apps: db.ref("apps")
   },
-  props: ['category'],
+  props: ["category"],
   methods: {
-    detectFiles (fileList) {
-      Array.from(Array(fileList.length).keys()).map( x => {
-        this.upload(fileList[x])
-      })
-    },
-    upload (file) {
-      storage.ref('debs/' + file.name).put(file).then(res => {
-        storage.ref('debs/' + file.name).getDownloadURL()
-        .then(url => this.$firebaseRefs.apps.push({
-          addedIn: res.metadata.timeCreated,
-          category: this.category,
-          lastTimeDownloaded: res.metadata.timeCreated,
-          name: res.metadata.name,
-          size: (parseInt(res.metadata.size, 10)/1000000) + 'Mb',
-          url: url
-        }))
+    detectFiles(fileList) {
+      Array.from(Array(fileList.length).keys()).map(x => {
+        this.upload(fileList[x]);
       });
+    },
+    upload(file) {
+      storage
+        .ref("debs/" + file.name)
+        .put(file)
+        .then(res => {
+          storage
+            .ref("debs/" + file.name)
+            .getDownloadURL()
+            .then(url =>
+              this.$firebaseRefs.apps.push({
+                addedIn: res.metadata.timeCreated,
+                category: this.category,
+                lastTimeDownloaded: res.metadata.timeCreated,
+                name: res.metadata.name,
+                size: parseInt(res.metadata.size, 10) / 1000000 + "Mb",
+                url: url
+              })
+            );
+        });
     }
   }
 };
@@ -63,5 +70,11 @@ export default {
 .inputCard:hover {
   box-shadow: 0 1px 6px #f9548f;
   border-color: #f9548f;
+}
+@media (max-width: 600px) {
+  .inputCard {
+    width: 160px;
+    height: 170px;
+  }
 }
 </style>
