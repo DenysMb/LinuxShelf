@@ -20,7 +20,7 @@
     </div>
     <div>
       <strong>Category</strong>:
-      <Select size="small" v-model="category">
+      <Select size="small" v-model="category" not-found-text="No category">
         <Option v-for="category in categories" v-model="category.value" :key="category.value">{{ category.label }}</Option>
       </Select>
     </div>

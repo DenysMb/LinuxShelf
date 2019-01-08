@@ -28,7 +28,7 @@ export default {
         image: "@/assets/debian.png",
         addedIn: "02/01/2019",
         size: "128Mb",
-        category: "favorites",
+        category: "",
         lastTimeDownloaded: "02/01/2019"
       }
     }

@@ -44,7 +44,7 @@
     </div>
     <div>
       <strong>Category</strong>:
-      <Select size="small" v-model="app.category" :disabled="disabledInput" :on-change="handleChange('category')">
+      <Select size="small" v-model="app.category" not-found-text="No category" :disabled="disabledInput" :on-change="handleChange('category')">
         <Option v-for="category in categories" v-model="category.value" :key="category.value">{{ category.label }}</Option>
       </Select>
     </div>
