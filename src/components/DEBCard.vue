@@ -1,15 +1,17 @@
 <template>
   <Card class="card">
-    <div style="text-align:center" @click="openModal">
+    <div
+      style="text-align:center"
+      @click.prevent="modal = true;">
       <img
-        src="@/assets/debian.png"
-        @closeModal="openModal = false"
+        :src="logo"
       />
       <h3>{{app.name}}</h3>
     </div>
     <DEBModal
-      :open="modal"
       :app="app"
+      :open="modal"
+      @close="modal = false"
       />
   </Card>
 </template>
@@ -25,7 +27,7 @@ export default {
       type: Object,
       default: {
         title: "APP",
-        image: "@/assets/debian.png",
+        image: "@/assets/deb.png",
         addedIn: "02/01/2019",
         size: "128Mb",
         category: "",
@@ -35,13 +37,9 @@ export default {
   },
   data() {
     return {
-      modal: false
+      modal: false,
+      logo: require('@/assets/' + this.app.type + '.png')
     };
-  },
-  methods: {
-    openModal() {
-      this.modal = true;
-    }
   }
 };
 </script>

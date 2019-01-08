@@ -2,13 +2,13 @@
   <Card class="cardList">
     <div style="display: flex;" @click="openModal">
       <img
-        src="@/assets/debian.png"
-        @closeModal="openModal = false"
+        :src="logo"
       />
       <h3>{{app.name}}</h3>
     </div>
     <DEBModal
       :open="modal"
+      @close="modal = false"
       :app="app"
       />
   </Card>
@@ -25,7 +25,7 @@ export default {
       type: Object,
       default: {
         title: "APP",
-        image: "@/assets/debian.png",
+        image: "@/assets/deb.png",
         addedIn: "02/01/2019",
         size: "128Mb",
         category: "",
@@ -35,7 +35,8 @@ export default {
   },
   data() {
     return {
-      modal: false
+      modal: false,
+      logo: require('@/assets/' + this.app.type + '.png')
     };
   },
   methods: {

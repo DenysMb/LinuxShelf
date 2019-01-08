@@ -1,7 +1,7 @@
 <template>
   <Modal
     v-model="open"
-    @on-cancel="closeModal"
+    @on-cancel="$emit('close')"
     :closable="false">
     <Input
       v-model="title"
@@ -12,7 +12,7 @@
       <Button
         type="default"
         size="small"
-        @click="closeModal">Cancel</Button>
+        @click="$emit('close')">Cancel</Button>
       <Button
         type="primary"
         size="small"
@@ -43,10 +43,7 @@
          label: this.title,
          value: camelCase(this.title)
        });
-       this.closeModal();
-     },
-     closeModal(){
-       this.$emit('closeModal', this.open)
+       this.$emit("close");
      }
    }
   }

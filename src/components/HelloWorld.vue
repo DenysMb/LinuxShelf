@@ -2,7 +2,7 @@
   <div class="hello">
     <h1>DebShelf</h1>
     <p>
-      Your own shelf for all yours debian binaries files.
+      Your own shelf for all yours linux binaries files.
     </p>
   </div>
 </template>

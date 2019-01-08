@@ -1,7 +1,7 @@
 <template>
   <Modal
-    v-model="open"
-    @on-cancel="closeModal"
+    :value="open"
+    @on-cancel="$emit('close')"
     :closable="false">
     <Input
       v-model="app.name"
@@ -48,7 +48,18 @@
         <Option v-for="category in categories" v-model="category.value" :key="category.value">{{ category.label }}</Option>
       </Select>
     </div>
+    <div>
+      <strong>Type</strong>:
+      <Select size="small" v-model="app.type" not-found-text="No category" :disabled="disabledInput" :on-change="handleChange('type')">
+        <Option v-for="type in types" v-model="type.value" :key="type.value">{{ type.label }}</Option>
+      </Select>
+    </div>
     <div slot="footer">
+      <Button
+        type="default"
+        size="large"
+        class="btn-default"
+        @click="deleteApp">Delete</Button>
       <Button
         type="default"
         size="large"
@@ -69,15 +80,16 @@ import { db } from "@/firebase";
 export default {
   props: {
     app: Object,
-    open: Boolean
+    open: false
   },
   firebase: {
     apps: db.ref("apps"),
-    categories: db.ref("categories")
+    categories: db.ref("categories"),
+    types: db.ref("types")
   },
   data() {
     return {
-      disabledInput: true
+      disabledInput: true,
     };
   },
   methods: {
@@ -87,13 +99,13 @@ export default {
     edit() {
       this.disabledInput = !this.disabledInput;
     },
-    closeModal() {
-      this.$emit("closeModal", this.open);
-    },
     handleChange(key) {
       this.$firebaseRefs.apps
         .child(this.app[".key"])
         .update({ [key]: this.app[key] });
+    },
+    deleteApp() {
+      this.$firebaseRefs.apps.child(this.app[".key"]).remove();
     }
   }
 };

@@ -24,7 +24,10 @@
       <slot></slot>
       <AddAppCard :category="category.value" />
     </div>
-    <ManualInsertCard :open="openModal" @closeModal="openModal = false" :defaultCategory="category.value"/>
+    <ManualInsertCard
+      :open="openModal"
+      @close="openModal = false" 
+      :defaultCategory="category.value"/>
   </Card>
 </template>
 

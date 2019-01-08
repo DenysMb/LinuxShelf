@@ -33,10 +33,14 @@ export default {
       });
     },
     upload(file) {
+      let type = file.name.split('.')
+      type = type[type.length-1]
+      this.$Loading.start();
       storage
         .ref("debs/" + file.name)
         .put(file)
         .then(res => {
+          this.$Loading.finish();
           storage
             .ref("debs/" + file.name)
             .getDownloadURL()
@@ -47,7 +51,8 @@ export default {
                 lastTimeDownloaded: res.metadata.timeCreated,
                 name: res.metadata.name,
                 size: parseInt(res.metadata.size, 10) / 1000000 + "Mb",
-                url: url
+                url: url,
+                type: type
               })
             );
         });

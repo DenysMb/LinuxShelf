@@ -7,12 +7,14 @@
         </template>
       </CategoryShelf>
     </template>
-    <Button type="primary" long class="btn-primary" @click="handleOpenCategoryModal">Add category</Button>
+    <Button type="primary" long class="btn-primary" @click="modal = true">Add category</Button>
     <Divider>All apps</Divider>
     <div style="display: flex; flex-wrap: wrap;">
       <DEBListCard v-for="app in apps" :app="app" />
     </div>
-    <AddCategoryModal :open="openCategoryModal" @closeModal="openCategoryModal = false" />
+    <AddCategoryModal
+      :open="modal"
+      @close="modal = false" />
   </div>
 </template>
 
@@ -35,13 +37,8 @@ export default {
   },
   data() {
     return {
-      openCategoryModal: false
+      modal: false
     };
-  },
-  methods: {
-    handleOpenCategoryModal() {
-      this.openCategoryModal = true;
-    }
   }
 };
 </script>
