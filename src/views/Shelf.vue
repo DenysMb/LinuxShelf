@@ -9,10 +9,10 @@
     </template>
     <Button type="primary" long class="btn-primary" @click="handleOpenCategoryModal">Add category</Button>
     <Divider>All apps</Divider>
-    <template v-for="app in apps">
-      <DEBCard :app="app" />
-    </template>
-    <AddCategoryModal :open="openCategoryModal" @closeModal="openCategoryModal = close" />
+    <div style="display: flex">
+      <DEBCard v-for="app in apps" :app="app" />
+    </div>
+    <AddCategoryModal :open="openCategoryModal" @closeModal="openCategoryModal = false" />
   </div>
 </template>
 

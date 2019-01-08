@@ -4,16 +4,13 @@
       <img
         src="@/assets/debian.png"
         @click="openModal"
+        @closeModal="openModal = false"
       />
       <h3>{{app.name}}</h3>
     </div>
     <DEBModal
       :open="modal"
-      :title="app.name"
-      :addedIn="app.addedIn"
-      :size="app.size"
-      :category="app.category"
-      :lastTimeDownloaded="app.lastTimeDownloaded"
+      :app="app"
       />
   </Card>
 </template>
@@ -32,7 +29,7 @@
           image: '@/assets/debian.png',
           addedIn: '02/01/2019',
           size: '128Mb',
-          category: 'Favorites',
+          category: 'favorites',
           lastTimeDownloaded: '02/01/2019'
         }
       },

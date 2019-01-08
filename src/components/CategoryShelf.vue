@@ -4,37 +4,60 @@
       <Icon :type="'ios-' + icon"></Icon>
       {{category.label}}
     </p>
-    <a href="#" slot="extra" @click.prevent="deleteCategory" v-if="deleteCategory">
-      <Icon type="ios-close"></Icon>
-      Delete
-    </a>
+    <div slot="extra">
+      <Button
+        type="default"
+        shape="circle"
+        icon="ios-trash"
+        class="btn-default"
+        @click.prevent="deleteCategory"
+        v-if="deleteCategoryBool" />
+      <Button
+        type="primary"
+        shape="circle"
+        icon="ios-add"
+        class="btn-primary"
+        style="margin-left: 10px;"
+        @click.prevent="openManualInsertCardModal" />
+    </div>
     <div style="display: flex;">
       <slot></slot>
       <AddAppCard :category="category.value" />
     </div>
+    <ManualInsertCard :open="openModal" @closeModal="openModal = false"/>
   </Card>
 </template>
 
 <script>
   import AddAppCard from './AddAppCard';
+  import ManualInsertCard from './ManualInsertCard';
   import { db } from '@/firebase';
   export default {
     components: {
-      AddAppCard
+      AddAppCard,
+      ManualInsertCard
     },
     props: {
   		icon: String,
   		category: Object,
-      deleteCategory: {type: Boolean, default: true}
-  },
-  firebase: {
-    categories: db.ref('categories')
-  },
-  methods: {
-    deleteCategory(){
-      this.$firebaseRefs.categories.child(this.category['.key']).remove();
+      deleteCategoryBool: {default: true}
+    },
+    firebase: {
+      categories: db.ref('categories')
+    },
+    data(){
+      return({
+        openModal: false
+      })
+    },
+    methods: {
+      deleteCategory(){
+        this.$firebaseRefs.categories.child(this.category['.key']).remove();
+      },
+      openManualInsertCardModal(){
+        this.openModal = true
+      }
     }
-  }
   }
 </script>
 
