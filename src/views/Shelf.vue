@@ -9,7 +9,7 @@
     </template>
     <Button type="primary" long class="btn-primary" @click="handleOpenCategoryModal">Add category</Button>
     <Divider>All apps</Divider>
-    <div style="display: flex">
+    <div style="display: flex; flex-wrap: wrap;">
       <DEBCard v-for="app in apps" :app="app" />
     </div>
     <AddCategoryModal :open="openCategoryModal" @closeModal="openCategoryModal = false" />
@@ -17,10 +17,10 @@
 </template>
 
 <script>
-import CategoryShelf from '@/components/CategoryShelf';
-import DEBCard from '@/components/DEBCard';
-import AddCategoryModal from '@/components/AddCategoryModal';
-import { db } from '@/firebase';
+import CategoryShelf from "@/components/CategoryShelf";
+import DEBCard from "@/components/DEBCard";
+import AddCategoryModal from "@/components/AddCategoryModal";
+import { db } from "@/firebase";
 export default {
   components: {
     CategoryShelf,
@@ -28,17 +28,17 @@ export default {
     AddCategoryModal
   },
   firebase: {
-    apps: db.ref('apps'),
-    categories: db.ref('categories').orderByChild('value')
+    apps: db.ref("apps"),
+    categories: db.ref("categories").orderByChild("value")
   },
   data() {
     return {
       openCategoryModal: false
-    }
+    };
   },
   methods: {
     handleOpenCategoryModal() {
-      this.openCategoryModal = true
+      this.openCategoryModal = true;
     }
   }
 };

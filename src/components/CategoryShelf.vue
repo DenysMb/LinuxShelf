@@ -20,7 +20,7 @@
         style="margin-left: 10px;"
         @click.prevent="openManualInsertCardModal" />
     </div>
-    <div style="display: flex;">
+    <div style="display: flex; overflow-x: auto;">
       <slot></slot>
       <AddAppCard :category="category.value" />
     </div>
@@ -29,45 +29,45 @@
 </template>
 
 <script>
-  import AddAppCard from './AddAppCard';
-  import ManualInsertCard from './ManualInsertCard';
-  import { db } from '@/firebase';
-  export default {
-    components: {
-      AddAppCard,
-      ManualInsertCard
+import AddAppCard from "./AddAppCard";
+import ManualInsertCard from "./ManualInsertCard";
+import { db } from "@/firebase";
+export default {
+  components: {
+    AddAppCard,
+    ManualInsertCard
+  },
+  props: {
+    icon: String,
+    category: Object,
+    deleteCategoryBool: { default: true }
+  },
+  firebase: {
+    categories: db.ref("categories")
+  },
+  data() {
+    return {
+      openModal: false
+    };
+  },
+  methods: {
+    deleteCategory() {
+      this.$firebaseRefs.categories.child(this.category[".key"]).remove();
     },
-    props: {
-  		icon: String,
-  		category: Object,
-      deleteCategoryBool: {default: true}
-    },
-    firebase: {
-      categories: db.ref('categories')
-    },
-    data(){
-      return({
-        openModal: false
-      })
-    },
-    methods: {
-      deleteCategory(){
-        this.$firebaseRefs.categories.child(this.category['.key']).remove();
-      },
-      openManualInsertCardModal(){
-        this.openModal = true
-      }
+    openManualInsertCardModal() {
+      this.openModal = true;
     }
   }
+};
 </script>
 
 <style scoped>
-  a {
-    color: #f9548f;
-    transition: all 0.2s;
-  }
-  a:hover {
-    opacity: 0.8;
-    transition: all 0.2s;
-  }
+a {
+  color: #f9548f;
+  transition: all 0.2s;
+}
+a:hover {
+  opacity: 0.8;
+  transition: all 0.2s;
+}
 </style>

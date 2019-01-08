@@ -59,4 +59,7 @@
     border-color: #f9548f !important
     color: #f9548f !important
 
+@media (max-width: 600px)
+  .ivu-card-body
+    padding: 5px !important
 </style>
