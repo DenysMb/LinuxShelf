@@ -40,38 +40,40 @@
 </template>
 
 <script>
-import { db } from '@/firebase';
+import { db } from "@/firebase";
 export default {
   props: {
-    open: Boolean
+    open: Boolean,
+    defaultCategory: String
   },
   firebase: {
-    apps: db.ref('apps'),
-    categories: db.ref('categories')
+    apps: db.ref("apps"),
+    categories: db.ref("categories")
   },
   data() {
-    return ({
-      name: '',
-      category: '',
-      url: ''
-    })
+    return {
+      name: "",
+      category: this.defaultCategory,
+      url: ""
+    };
   },
   methods: {
-    closeModal(){
-      this.$emit('closeModal', this.open)
+    closeModal() {
+      this.$emit("closeModal", this.open);
     },
-    saveCard(){
+    saveCard() {
       this.$firebaseRefs.apps.push({
         name: this.name,
         category: this.category,
-        addedIn: new Date(),
+        addedIn: new Date().toISOString(),
         lastTimeDownloaded: null,
         url: this.url,
-        size: 'No size occupied'
-      })
+        size: "No size occupied"
+      });
+      this.closeModal();
     }
   }
-}
+};
 </script>
 
 <style scoped>
