@@ -1,9 +1,8 @@
 <template>
   <Card class="card">
-    <div style="text-align:center">
+    <div style="text-align:center" @click="openModal">
       <img
         src="@/assets/debian.png"
-        @click="openModal"
         @closeModal="openModal = false"
       />
       <h3>{{app.name}}</h3>
