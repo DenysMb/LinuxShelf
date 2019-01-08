@@ -4,7 +4,7 @@
       <div id="nav">
         <!-- <router-link to="/">Home</router-link> |
         <router-link to="/about">About</router-link> -->
-        <Breadcrumb separator="<span style='color: #f9548f'>/</span>">
+        <Breadcrumb separator="<span style='color: #e25252'>/</span>">
             <BreadcrumbItem to="/">Home</BreadcrumbItem>
             <BreadcrumbItem to="/shelf">Shelf</BreadcrumbItem>
         </Breadcrumb>
@@ -39,25 +39,25 @@
   line-height: 0 !important
 
 .btn-primary
-  background-color: #f9548f !important
-  border-color: #f9548f !important
+  background-color: #e25252 !important
+  border-color: #e25252 !important
   transition: all 0.2s !important
   &:hover
-    background-color: #f9548f !important
-    border-color: #f9548f !important
+    background-color: #e25252 !important
+    border-color: #e25252 !important
     opacity: 0.8 !important
     transition: all 0.2s !important
   &:focus
-    box-shadow: 0 0 0 2px rgba(249, 84, 143,.2) !important
+    box-shadow: 0 0 0 2px rgba(226, 82, 82,.2) !important
 
 .btn-default
   &:hover
-    border-color: #f9548f !important
-    color: #f9548f !important
+    border-color: #e25252 !important
+    color: #e25252 !important
   &:focus
-    box-shadow: 0 0 0 2px rgba(249, 84, 143,.2) !important
-    border-color: #f9548f !important
-    color: #f9548f !important
+    box-shadow: 0 0 0 2px rgba(226, 82, 82,.2) !important
+    border-color: #e25252 !important
+    color: #e25252 !important
 
 @media (max-width: 600px)
   .ivu-card-body
