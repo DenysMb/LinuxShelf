@@ -10,7 +10,7 @@
     <Button type="primary" long class="btn-primary" @click="handleOpenCategoryModal">Add category</Button>
     <Divider>All apps</Divider>
     <div style="display: flex; flex-wrap: wrap;">
-      <DEBCard v-for="app in apps" :app="app" />
+      <DEBListCard v-for="app in apps" :app="app" />
     </div>
     <AddCategoryModal :open="openCategoryModal" @closeModal="openCategoryModal = false" />
   </div>
@@ -19,12 +19,14 @@
 <script>
 import CategoryShelf from "@/components/CategoryShelf";
 import DEBCard from "@/components/DEBCard";
+import DEBListCard from "@/components/DEBListCard";
 import AddCategoryModal from "@/components/AddCategoryModal";
 import { db } from "@/firebase";
 export default {
   components: {
     CategoryShelf,
     DEBCard,
+    DEBListCard,
     AddCategoryModal
   },
   firebase: {

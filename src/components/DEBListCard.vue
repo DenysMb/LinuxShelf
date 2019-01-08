@@ -1,9 +1,8 @@
 <template>
-  <Card class="card">
-    <div style="text-align:center">
+  <Card class="cardList">
+    <div style="display: flex;" @click="openModal">
       <img
         src="@/assets/debian.png"
-        @click="openModal"
         @closeModal="openModal = false"
       />
       <h3>{{app.name}}</h3>
@@ -49,16 +48,20 @@ export default {
 
 <style scoped>
 img {
-  width: 128px;
-  height: 128px;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
 }
 h3 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.card {
-  margin-right: 20px;
-  width: 160px;
+.cardList {
+  margin-bottom: 10px;
+  width: 100%;
+}
+.ivu-card-body {
+  padding: 10px !important;
 }
 </style>
