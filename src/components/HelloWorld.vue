@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>DebShelf</h1>
+    <h1>LinuxShelf</h1>
     <p>
       Your own shelf for all yours linux binaries files.
     </p>

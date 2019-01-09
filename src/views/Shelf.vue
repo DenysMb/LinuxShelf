@@ -32,7 +32,7 @@ export default {
     AddCategoryModal
   },
   firebase: {
-    apps: db.ref("apps"),
+    apps: db.ref("apps").orderByChild("name"),
     categories: db.ref("categories").orderByChild("value")
   },
   data() {

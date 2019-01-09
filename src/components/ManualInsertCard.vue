@@ -34,7 +34,7 @@
       <Button
         type="default"
         size="large"
-        @click="$emit("close")">Cancel</Button>
+        @click="$emit('close')">Cancel</Button>
       <Button
         type="primary"
         size="large"
@@ -61,7 +61,7 @@ export default {
     return {
       name: "",
       category: this.defaultCategory,
-      type: 'deb',
+      type: "deb",
       url: ""
     };
   },
