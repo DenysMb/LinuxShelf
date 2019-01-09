@@ -66,7 +66,7 @@ export default {
 
 <style scoped>
 a {
-  color: #e25252;
+  color: #585858;
   transition: all 0.2s;
 }
 a:hover {

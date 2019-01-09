@@ -73,8 +73,8 @@ export default {
   height: 190px;
 }
 .inputCard:hover {
-  box-shadow: 0 1px 6px #e25252;
-  border-color: #e25252;
+  box-shadow: 0 1px 6px #585858;
+  border-color: #585858;
 }
 @media (max-width: 600px) {
   .inputCard {
