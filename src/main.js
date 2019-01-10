@@ -7,6 +7,7 @@ import 'iview/dist/styles/iview.css';
 
 Vue.use(iView);
 Vue.use(VueFire)
+Vue.prototype.$color = 'green';
 Vue.config.productionTip = false;
 
 new Vue({

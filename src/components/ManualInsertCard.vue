@@ -38,7 +38,7 @@
       <Button
         type="primary"
         size="large"
-        class="btn-primary"
+        :class="'btn-' + $color"
         style="margin-left: 10px;"
         @click="saveCard">Insert</Button>
     </div>

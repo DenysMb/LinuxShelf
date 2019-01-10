@@ -16,7 +16,7 @@
         type="primary"
         shape="circle"
         icon="ios-add"
-        class="btn-primary"
+        :class="'btn-' + $color"
         style="margin-left: 10px;"
         @click.prevent="openManualInsertCardModal" />
     </div>
@@ -26,7 +26,7 @@
     </div>
     <ManualInsertCard
       :open="openModal"
-      @close="openModal = false" 
+      @close="openModal = false"
       :defaultCategory="category.value"/>
   </Card>
 </template>

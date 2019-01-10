@@ -69,7 +69,7 @@
         <Button
           type="primary"
           size="large"
-          class="btn-primary">Download</Button>
+          :class="'btn-' + $color">Download</Button>
       </a>
     </div>
   </Modal>
