@@ -7,7 +7,7 @@
         </template>
       </CategoryShelf>
     </template>
-    <Button type="primary" long :class="'btn-' + $color" @click="modal = true">Add category</Button>
+    <Button type="primary" long :class="'btn-' + $store.state.color" @click="modal = true">Add category</Button>
     <Divider>All apps</Divider>
     <div style="display: flex; flex-wrap: wrap;">
       <DEBListCard v-for="app in apps" :app="app" />

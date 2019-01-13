@@ -16,7 +16,7 @@
         type="primary"
         shape="circle"
         icon="ios-add"
-        :class="'btn-' + $color"
+        :class="'btn-' + $store.state.color"
         style="margin-left: 10px;"
         @click.prevent="openManualInsertCardModal" />
     </div>

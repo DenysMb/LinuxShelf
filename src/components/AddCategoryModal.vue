@@ -16,7 +16,7 @@
       <Button
         type="primary"
         size="small"
-        :class="'btn-' + $color"
+        :class="'btn-' + $store.state.color"
         @click="save">Save</Button>
     </div>
   </Modal>

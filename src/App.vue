@@ -14,35 +14,35 @@
           class="btn-black"
           icon="ios-color-palette"
           style="margin-right: 10px;"
-          @click="changeColor('black')"></Button>
+          @click="$store.commit('changeColor', 'black')"></Button>
         <Button
           type="primary"
           shape="circle"
           class="btn-red"
           icon="ios-color-palette"
           style="margin-right: 10px;"
-          @click="changeColor('red')"></Button>
+          @click="$store.commit('changeColor', 'red')"></Button>
         <Button
           type="primary"
           shape="circle"
           class="btn-green"
           icon="ios-color-palette"
           style="margin-right: 10px;"
-          @click="changeColor('green')"></Button>
+          @click="$store.commit('changeColor', 'green')"></Button>
         <Button
           type="primary"
           shape="circle"
           class="btn-blue"
           icon="ios-color-palette"
           style="margin-right: 10px;"
-          @click="changeColor('blue')"></Button>
+          @click="$store.commit('changeColor', 'blue')"></Button>
         <Button
           type="primary"
           shape="circle"
           class="btn-yellow"
           icon="ios-color-palette"
           style="margin-right: 10px;"
-          @click="changeColor('yellow')"></Button>
+          @click="$store.commit('changeColor', 'yellow')"></Button>
       </div>
     </Header>
     <Content style="padding: 20px;">
@@ -52,15 +52,7 @@
 </template>
 
 <script>
-export default {
-  methods: {
-    changeColor(color){
-      console.log(this.$color)
-      this.$color = color;
-      console.log(this.$color)
-    }
-  }
-}
+export default {}
 </script>
 
 <style lang="sass">

@@ -22,15 +22,7 @@ export default {
   },
   props: {
     app: {
-      type: Object,
-      default: {
-        title: "APP",
-        image: "@/assets/deb.png",
-        addedIn: "02/01/2019",
-        size: "128Mb",
-        category: "",
-        lastTimeDownloaded: "02/01/2019"
-      }
+      type: Object
     }
   },
   data() {

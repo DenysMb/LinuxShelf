@@ -69,7 +69,7 @@
         <Button
           type="primary"
           size="large"
-          :class="'btn-' + $color">Download</Button>
+          :class="'btn-' + $store.state.color">Download</Button>
       </a>
     </div>
   </Modal>
