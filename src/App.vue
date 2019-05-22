@@ -1,13 +1,10 @@
 <template>
-  <div id="app">
+  <div id="app" :class="'bg-' + $store.state.color">
     <Header>
       <div id="nav">
-        <!-- <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link> -->
-        <Breadcrumb style="flex: 1; line-height: normal !important;" separator="<span style='color: #585858'>/</span>">
-            <BreadcrumbItem to="/">Home</BreadcrumbItem>
-            <BreadcrumbItem to="/shelf">Shelf</BreadcrumbItem>
-        </Breadcrumb>
+        <div class="logo">
+          LinuxShelf
+        </div>
         <Button
           type="primary"
           shape="circle"
@@ -70,8 +67,14 @@ export default {}
   & a
     font-weight: bold
     color: #2c3e50
-    &.router-link-exact-active
-      color: #42b983
+  & .logo
+    flex: 1
+    text-align: left
+    display: flex
+    align-items: center
+    margin-left: 10px
+    font-size: 1.25em
+    font-weight: 700
 
 .ivu-layout-header
   background: none !important
@@ -147,6 +150,17 @@ export default {}
     box-shadow: 0 0 0 2px rgba(88, 88, 88,.2) !important
     border-color: #585858 !important
     color: #585858 !important
+
+.bg-black
+  background-color: rgba(#585858, 0.1) !important
+.bg-green
+  background-color: rgba(#507c5c, 0.1) !important
+.bg-red
+  background-color: rgba(#b3404a, 0.1) !important
+.bg-yellow
+  background-color: rgba(#ffc61b, 0.1) !important
+.bg-blue
+  background-color: rgba(#2d527c, 0.1) !important
 
 @media (max-width: 600px)
   .ivu-card-body
