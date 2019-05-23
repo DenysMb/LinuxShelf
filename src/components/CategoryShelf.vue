@@ -22,7 +22,6 @@
     </div>
     <div style="display: flex; overflow-x: auto;">
       <slot></slot>
-      <AddAppCard :category="category.value" />
     </div>
     <ManualInsertCard
       :open="openModal"
@@ -32,12 +31,10 @@
 </template>
 
 <script>
-import AddAppCard from "./AddAppCard";
 import ManualInsertCard from "./ManualInsertCard";
 import { db } from "@/firebase";
 export default {
   components: {
-    AddAppCard,
     ManualInsertCard
   },
   props: {

@@ -4,6 +4,10 @@
       style="text-align:center"
       @click.prevent="modal = true;">
       <img
+        :src="app.image"
+      />
+      <img
+        class="type-logo"
         :src="logo"
       />
       <h3>{{app.name}}</h3>
@@ -48,6 +52,7 @@ export default {
 img {
   width: 128px;
   height: 128px;
+  object-fit: contain;
 }
 h3 {
   white-space: nowrap;
@@ -57,5 +62,12 @@ h3 {
 .card {
   margin-right: 20px;
   width: 160px;
+}
+.type-logo {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 32px;
+  height: 32px;
 }
 </style>

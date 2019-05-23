@@ -19,26 +19,18 @@
         />
     </div>
     <div>
-      <strong>Last time downloaded</strong>:
-      <Input
-        v-model="app.lastTimeDownloaded"
-        :disabled="true"
-        size="small"
-        />
-    </div>
-    <div>
-      <strong>Size</strong>:
-      <Input
-        v-model="app.size"
-        :disabled="true"
-        size="small"
-        />
-    </div>
-    <div>
       <strong>URL</strong>:
       <Input
         v-model="app.url"
         :disabled="true"
+        size="small"
+        />
+    </div>
+    <div>
+      <strong>Image</strong>:
+      <Input
+        v-model="app.image"
+        :disabled="disabledInput"
         size="small"
         />
     </div>

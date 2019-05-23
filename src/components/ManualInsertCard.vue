@@ -19,6 +19,14 @@
         />
     </div>
     <div>
+      <strong>Image</strong>:
+      <Input
+        v-model="image"
+        size="small"
+        style="width: 100%"
+        />
+    </div>
+    <div>
       <strong>Category</strong>:
       <Select size="small" v-model="category" not-found-text="No category">
         <Option v-for="category in categories" v-model="category.value" :key="category.value">{{ category.label }}</Option>
@@ -62,7 +70,8 @@ export default {
       name: "",
       category: this.defaultCategory,
       type: "deb",
-      url: ""
+      url: "",
+      image: ""
     };
   },
   methods: {
@@ -71,10 +80,9 @@ export default {
         name: this.name,
         category: this.category,
         addedIn: new Date().toISOString(),
-        lastTimeDownloaded: null,
         url: this.url,
         type: this.type,
-        size: "No size occupied"
+        image: this.image
       });
       this.$emit("close");
     }
