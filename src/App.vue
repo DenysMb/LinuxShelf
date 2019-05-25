@@ -5,41 +5,56 @@
         <div class="logo">
           LinuxShelf
         </div>
-        <Button
-          type="primary"
-          shape="circle"
-          class="btn-black"
-          icon="ios-color-palette"
-          style="margin-right: 10px;"
-          @click="$store.commit('changeColor', 'black')"></Button>
-        <Button
-          type="primary"
-          shape="circle"
-          class="btn-red"
-          icon="ios-color-palette"
-          style="margin-right: 10px;"
-          @click="$store.commit('changeColor', 'red')"></Button>
-        <Button
-          type="primary"
-          shape="circle"
-          class="btn-green"
-          icon="ios-color-palette"
-          style="margin-right: 10px;"
-          @click="$store.commit('changeColor', 'green')"></Button>
-        <Button
-          type="primary"
-          shape="circle"
-          class="btn-blue"
-          icon="ios-color-palette"
-          style="margin-right: 10px;"
-          @click="$store.commit('changeColor', 'blue')"></Button>
-        <Button
-          type="primary"
-          shape="circle"
-          class="btn-yellow"
-          icon="ios-color-palette"
-          style="margin-right: 10px;"
-          @click="$store.commit('changeColor', 'yellow')"></Button>
+        <div>
+          <input 
+            class="token_input" 
+            type="text" 
+            placeholder="Token" 
+            v-model="token"
+          />
+          <button 
+            class="token_button"
+            @click="save"
+            :style="tokenButtonStyle"
+          >Validate</button>
+        </div>
+        <div class="color_buttons">
+          <Button
+            type="primary"
+            shape="circle"
+            class="btn-black"
+            icon="ios-color-palette"
+            style="margin-right: 10px;"
+            @click="$store.commit('changeColor', 'black')"></Button>
+          <Button
+            type="primary"
+            shape="circle"
+            class="btn-red"
+            icon="ios-color-palette"
+            style="margin-right: 10px;"
+            @click="$store.commit('changeColor', 'red')"></Button>
+          <Button
+            type="primary"
+            shape="circle"
+            class="btn-green"
+            icon="ios-color-palette"
+            style="margin-right: 10px;"
+            @click="$store.commit('changeColor', 'green')"></Button>
+          <Button
+            type="primary"
+            shape="circle"
+            class="btn-blue"
+            icon="ios-color-palette"
+            style="margin-right: 10px;"
+            @click="$store.commit('changeColor', 'blue')"></Button>
+          <Button
+            type="primary"
+            shape="circle"
+            class="btn-yellow"
+            icon="ios-color-palette"
+            style="margin-right: 10px;"
+            @click="$store.commit('changeColor', 'yellow')"></Button>
+        </div>
       </div>
     </Header>
     <Content style="padding: 20px;">
@@ -49,7 +64,39 @@
 </template>
 
 <script>
-export default {}
+import { db } from "@/firebase";
+export default {
+  firebase: {
+    system: db.ref("system")
+  },
+  data() {
+     return {
+       token: ''
+     }
+   },
+   computed: {
+     tokenButtonStyle() {
+       return this.token === process.env.VUE_APP_token
+       ? "border-left: 2px solid green;"
+       : "border-left: 2px solid red;"
+     }
+   },
+   methods: {
+     save(){
+       this.$firebaseRefs.system.update({
+         token: this.token
+       });
+     }
+   },
+   mounted() {
+     this.title = '';
+     this.save();
+   },
+   destroyed() {
+     this.title = '';
+     this.save();
+   }
+}
 </script>
 
 <style lang="sass">
@@ -161,6 +208,25 @@ export default {}
   background-color: rgba(#ffc61b, 0.1) !important
 .bg-blue
   background-color: rgba(#2d527c, 0.1) !important
+
+.token_input
+  flex: 1
+  background: rgba(255,255,255,.75)
+  border: 1px solid rgba(0,0,0,.25)
+  border-radius: 5px;
+  padding: 5px;
+
+.token_button
+  background: rgba(255,255,255,.5);
+  border: 1px solid rgba(0,0,0,.25)
+  border-radius: 5px
+  padding: 11px
+  margin-left: 5px
+
+.color_buttons
+  display: flex
+  justify-content: flex-end
+  flex: 1
 
 @media (max-width: 600px)
   .ivu-card-body
